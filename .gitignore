@@ -1,0 +1,23 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.deepeval/
+.vs/
+.vscode/
+.agents/
+.codex/
+.aws/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+temp runs/
+execution_reports/
+reports/
+report/
+*.log
+~$*
