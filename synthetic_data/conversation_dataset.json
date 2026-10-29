@@ -1,0 +1,130 @@
+[
+    {
+        "scenario": "A customer wants to cancel their subscription.",
+        "turns": [
+            {
+                "role": "user",
+                "content": "I want to cancel my subscription right now. Can you tell me how to do it quickly and for sure?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "assistant",
+                "content": "Chatbot response to: I want to cancel my subscription right now. Can you tell me how to do it quickly and for sure?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "user",
+                "content": "Can you walk me through the exact steps to ensure my subscription is canceled permanently?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "assistant",
+                "content": "Chatbot response to: Can you walk me through the exact steps to ensure my subscription is canceled permanently?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "user",
+                "content": "Can you give me a step-by-step guide or a link to the cancellation page?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "assistant",
+                "content": "Chatbot response to: Can you give me a step-by-step guide or a link to the cancellation page?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "user",
+                "content": "Please provide a step-by-step guide or a direct link to the cancellation page.",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "assistant",
+                "content": "Chatbot response to: Please provide a step-by-step guide or a direct link to the cancellation page.",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "user",
+                "content": "Can you send me the link now so I can cancel my subscription immediately?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            },
+            {
+                "role": "assistant",
+                "content": "Chatbot response to: Can you send me the link now so I can cancel my subscription immediately?",
+                "user_id": null,
+                "retrieval_context": null,
+                "tools_called": null,
+                "mcp_tools_called": null,
+                "mcp_resources_called": null,
+                "mcp_prompts_called": null,
+                "metadata": null
+            }
+        ],
+        "expected_outcome": "The chatbot explains the cancellation process and confirms the cancellation if the customer is eligible.",
+        "user_description": "A frustrated customer who wants clear answers and asks follow-up questions.",
+        "persona": {
+            "characteristics": "A frustrated customer who wants clear answers and asks follow-up questions."
+        },
+        "context": null,
+        "name": null,
+        "comments": null,
+        "additional_metadata": {
+            "Persona": "A frustrated customer who wants clear answers and asks follow-up questions."
+        },
+        "custom_column_key_values": null,
+        "expectations": null
+    }
+]

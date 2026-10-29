@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepEval · Evaluation & review</title>
+<style>
+:root{--bg:#f4f6f8;--paper:#fff;--ink:#192c35;--muted:#647781;--line:#dde5e9;--teal:#087c80;--soft:#e8f5f3;--green:#187143;--red:#ab3636;--amber:#956616}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button,input,select,textarea{border:1px solid var(--line);border-radius:8px}input,select,textarea{background:white;color:var(--ink);padding:10px;width:100%}textarea{resize:vertical;font:13px/1.6 ui-monospace,Consolas,monospace}button{padding:10px 16px;background:var(--teal);color:white;font-weight:600;border-color:var(--teal)}button.secondary{background:white;color:var(--ink);border-color:var(--line)}button.danger{background:white;color:var(--red);border-color:#eacccc}button:hover:not(:disabled){filter:brightness(.96)}:focus-visible{outline:3px solid #76c9cc;outline-offset:2px}h1,h2,h3,p{margin:0}h1{font-size:25px;letter-spacing:-.7px}h2{font-size:17px;letter-spacing:-.2px}h3{font-size:14px}small,.muted{color:var(--muted)}header{background:var(--paper);border-bottom:1px solid var(--line)}.header-inner{max-width:1440px;margin:auto;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--teal);font-weight:750;text-transform:uppercase}.subtitle{color:var(--muted);margin-top:3px}.models{font-size:12px;text-align:right}.layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:310px minmax(0,1fr);gap:24px;padding:24px 30px 60px}aside{min-width:0}.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}.panel>.section-head{margin-bottom:14px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.field{margin-top:15px}label,.label{display:block;font-size:12px;font-weight:650;color:var(--muted);margin-bottom:6px}.case-list{max-height:355px;overflow:auto;margin:12px -8px 0;padding:0 8px}.case{display:block;width:100%;text-align:left;background:transparent;color:var(--ink);border:1px solid transparent;padding:12px 10px;margin-bottom:5px;font-size:13px;font-weight:450}.case.active{background:var(--soft);border-color:#a8d9d4}.case small{display:block;font-size:11px;margin-bottom:3px;color:var(--teal)}.case .question{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.badge{display:inline-block;border-radius:20px;font-size:11px;font-weight:650;padding:3px 9px;background:#eef2f4;color:var(--muted)}.badge.good{background:#e7f5eb;color:var(--green)}.badge.bad{background:#fbeaea;color:var(--red)}.badge.wait{background:#fff3d9;color:var(--amber)}.full{width:100%;margin-top:18px}.stepper{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:20px}.step{font-size:11px;color:var(--muted);border-top:3px solid var(--line);padding-top:9px}.step.active{border-color:var(--teal);color:var(--teal);font-weight:700}.step.done{border-color:#83bdb0}.step b{display:block;font-size:10px;margin-bottom:3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.readout{white-space:pre-wrap;overflow-wrap:anywhere;background:#f7f9fa;border:1px solid #edf1f3;border-radius:8px;padding:12px;font-size:13px}.question-title{font-size:19px;line-height:1.5;margin:9px 0 18px;letter-spacing:-.3px}.source-label{margin-bottom:6px}.source-label span{font-weight:400;font-size:11px}.notice{padding:12px 15px;border-radius:8px;background:var(--soft);color:#245e5d;margin:14px 0;font-size:12px}.notice.warning{background:#fff6e5;color:#815e22}.statusbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:18px}.statusbar strong{font-size:13px}.live-dot{display:inline-block;width:7px;height:7px;background:var(--teal);border-radius:50%;margin-right:7px}.run-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}.run-tab{padding:7px 13px;color:var(--muted);background:white;border-color:var(--line);font-size:12px}.run-tab.active{border-color:var(--teal);background:var(--soft);color:var(--teal)}.metric{border:1px solid var(--line);border-radius:10px;padding:17px}.score{font-size:34px;font-weight:700;letter-spacing:-1.4px;line-height:1.2;margin-top:13px}.score small{font-size:12px;letter-spacing:0;font-weight:400}.meter{height:5px;background:#edf1f2;border-radius:6px;margin:12px 0;position:relative}.meter .fill{height:100%;border-radius:6px;background:var(--teal)}.meter .target{position:absolute;height:11px;width:2px;top:-3px;background:#172e39}.reason{font-size:12px;margin-top:12px;color:#455e6a;white-space:pre-wrap;overflow-wrap:anywhere}details{margin-top:12px}summary{cursor:pointer;font-size:12px;color:var(--teal);font-weight:600}.formula{font:12px/1.6 ui-monospace,Consolas,monospace;background:#f4f7f8;padding:10px;border-radius:6px;margin-top:10px}.verdict-item{font-size:12px;border-top:1px solid var(--line);padding:10px 0;overflow-wrap:anywhere}.verdict-item:first-child{margin-top:10px}.cause{border-left:3px solid #b5d7d1;padding:2px 0 2px 12px;margin:14px 0}.cause p{font-size:12px;margin-top:5px}.actions{display:flex;gap:10px;margin-top:14px}.review{border-color:#9ecdc7;background:#fcfefe}.review textarea{min-height:225px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line);padding:10px 12px}td{padding:12px;border-bottom:1px solid #edf1f3}tr.best{background:var(--soft)}.empty{text-align:center;padding:34px 18px;color:var(--muted)}.error{white-space:pre-wrap;color:var(--red);background:#fff0ef;border-radius:8px;padding:12px;margin-bottom:16px}.hidden{display:none!important}#global-error{margin:16px 30px 0}#review-error{margin-top:12px;color:var(--red);font-size:12px}#progress-note{font-size:12px;color:var(--muted)}.spaced{margin-top:18px}.inline-note{font-size:11px;color:var(--muted);margin-top:8px}.best-label{font-size:11px;color:var(--teal);font-weight:700}.divider{border:0;border-top:1px solid var(--line);margin:18px 0}.run-note{font-size:12px;color:var(--muted);margin-bottom:12px}.guide p{font-size:12px;color:var(--muted);margin-top:8px}.guide code{color:var(--ink);font-size:12px}@media(max-width:980px){.layout{grid-template-columns:260px minmax(0,1fr);padding:20px}.grid{grid-template-columns:1fr}.header-inner{padding:20px}}@media(max-width:700px){.layout{grid-template-columns:1fr;padding:16px}.header-inner{display:block;padding:18px}.models{text-align:left;margin-top:12px}.case-list{max-height:200px}.stepper{grid-template-columns:repeat(3,1fr);row-gap:15px}.actions{flex-wrap:wrap}.actions button{flex:1}.panel{padding:16px}.statusbar{align-items:flex-start}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div><p class="eyebrow">DeepEval workspace</p><h1>Evaluation & human review</h1><p class="subtitle">From an Excel question to a reviewed, improved prompt.</p></div><div class="models" id="models">Loading model settings…</div></div></header>
+<div id="global-error" class="error hidden" role="alert"></div>
+<div class="layout">
+<aside>
+  <section class="panel"><div class="section-head"><h2>Test cases</h2><span id="case-count" class="badge">…</span></div><button id="new-case" class="secondary full">+ New test case</button><div class="field"><label for="workbook">Load from Excel (optional)</label><select id="workbook" disabled></select></div><div class="field"><label for="search">Find a question, ID, or sheet</label><input id="search" type="search" placeholder="Search test cases…"></div><div id="case-list" class="case-list" aria-label="Excel test cases"></div><button id="run" class="full" disabled>Evaluate this test case</button><p class="inline-note">Edit the fields on the right or create your own case. Excel workbooks stay unchanged.</p></section>
+  <section class="panel"><h2>Saved evaluations</h2><div class="field"><label for="saved">Prompt-review experiment history</label><select id="saved"><option value="">Choose a saved report…</option></select></div><button id="open-report" class="secondary full">View report</button></section>
+  <section class="panel guide"><h2>How scoring works</h2><p><strong>Answer relevancy</strong><br>The judge splits the answer into statements and checks whether each addresses the original question. Yes and borderline verdicts count toward the score.</p><p><strong>Hallucination</strong><br>The judge checks consistency with reference context. Yes verdicts count toward the score. A high score means agreement with that context; it does not independently verify real-world facts.</p><p>For the pinned DeepEval 4.3.1, higher is better. Each metric passes when <code>score ≥ threshold</code>. Missing required data is skipped, never treated as a pass.</p></section>
+</aside>
+<main>
+  <div class="stepper" id="stepper" aria-label="Evaluation workflow"></div>
+  <div class="statusbar" aria-live="polite"><strong id="status"><span class="live-dot"></span>Ready to evaluate</strong><span id="progress-note">Baseline + up to 2 approved revisions</span></div>
+  <section class="panel" id="source-panel"><p class="eyebrow">01 / Edit test case</p><div id="source" class="empty">Loading test case editor…</div></section>
+  <div id="results"><section class="panel empty"><h2>Your evaluation will appear here</h2><p class="spaced">Select an Excel row, then run an evaluation.<br>See the generated answer, metric calculations, and reasons.<br>If a metric fails, review the suggested prompt before another run.</p></section></div>
+</main>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const number = value => typeof value === 'number' ? value.toFixed(2) : '—';
+const labels = {HallucinationMetric:'Hallucination', AnswerRelevancyMetric:'Answer relevancy', FaithfulnessMetric:'Faithfulness', ContextualRelevancyMetric:'Contextual relevancy', ContextualRecallMetric:'Contextual recall', ContextualPrecisionMetric:'Contextual precision', CorrectnessMetric:'Correctness', CompletenessMetric:'Completeness', ClarityMetric:'Clarity', BiasMetric:'Bias', ToxicityMetric:'Toxicity'};
+const busyStates = new Set(['starting','generating','evaluating','awaiting_review','review_submitted']);
+let dataset = null, selected = 0, jobId = null, job = null, report = null;
+let draftMode = 'manual', draftBase = {};
+let editorRunKey = '';
+let runIndex = 0, signature = '', timer = null, pollingErrors = 0;
+
+async function api(path, data) {
+  const response = await fetch(path, data === undefined ? {} : {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  const body = await response.json();
+  if (!response.ok) throw new Error(body.error || 'Request failed');
+  return body;
+}
+function showError(error) {$('global-error').textContent = error.message || String(error); $('global-error').classList.remove('hidden');}
+function clearError() {$('global-error').classList.add('hidden');}
+function isBusy() {return !!job && busyStates.has(job.state);}
+function badge(text, kind='') {return `<span class="badge ${kind}">${esc(text)}</span>`;}
+function readout(label, value, column) {return `<div><p class="label source-label">${esc(label)} <span>· ${esc(column)}</span></p><div class="readout">${esc(value || 'Not provided')}</div></div>`;}
+function contextText(caseData) {
+  const value=caseData.context ?? (caseData.expected_answer || caseData.reference_context || '');
+  return Array.isArray(value)?value.join("\n\n"):value;
+}
+function testCaseFields(caseData, workbook) {
+  return `<div class="section-head spaced"><p class="muted">${esc(workbook || 'Manual test case')} ${caseData.id ? '· ID '+esc(caseData.id) : ''}</p><button id="reset-case" type="button" class="secondary">Reset fields</button></div>
+    <div class="field"><label for="edit-question">Question / prompt to evaluate</label><textarea id="edit-question" rows="3" placeholder="Enter your question…">${esc(caseData.input || '')}</textarea>
+    </div>
+    <div class="field"><label for="edit-context">Context (ground truth)</label><textarea id="edit-context" rows="5" placeholder="Enter the correct answer and trusted facts...">${esc(contextText(caseData))}</textarea>
+    <p class="inline-note">The judge uses this as the trusted context and expected answer. Include the information a correct answer should contain.</p></div>
+    <div class="field"><label for="edit-retrieval">Retrieved context</label><textarea id="edit-retrieval" rows="5" placeholder="Enter passages returned by retrieval...">${esc(Array.isArray(caseData.retrieval_context)?caseData.retrieval_context.join("\n\n"):(caseData.retrieval_context || ''))}</textarea>
+    <p class="inline-note">The model uses these passages to generate its answer. The judge also uses them for faithfulness and retrieval metrics.</p></div><p class="notice">You can edit these fields before evaluating. The next experiment uses your edits as its baseline. Source fields stay fixed during the three-run comparison.</p>`;
+}
+
+function source(caseData, workbook, mode = 'excel') {
+  draftMode = mode; draftBase = {...caseData};
+  $('source').className = '';
+  $('source').innerHTML = testCaseFields(caseData, workbook);
+  $('source').insertAdjacentHTML('beforeend', `<div class="field"><label for="edit-instructions">Additional instructions (suggestions appear here for review)</label><textarea id="edit-instructions" rows="3" placeholder="Optional instructions to guide the answer…">${esc(caseData.instructions || '')}</textarea></div><div id="editor-review" class="hidden"><p class="notice" id="editor-review-note"></p><div class="actions"><button type="button" id="approve">Approve & re-run</button><button type="button" id="reject" class="danger">Reject & stop</button></div><p id="review-error" role="alert"></p></div>`);
+  $('source').querySelector('.notice').textContent='Edit the test case here. When review is pending, approve these fields to run the next evaluation. Each run retains its own question, context, and instructions.';
+  lockEditor();
+}
+function editorValues() {return {input:$('edit-question').value,context:$('edit-context').value,retrieval_context:$('edit-retrieval').value,instructions:$('edit-instructions').value};}
+function lockEditor() {
+  const reviewing=job?.state==='awaiting_review';
+  document.querySelectorAll('#source textarea, #reset-case').forEach(element=>element.disabled=isBusy()&&!reviewing);
+  $('new-case').disabled=isBusy();
+  $('run').disabled=isBusy() || !$('edit-question')?.value.trim();
+  $('editor-review')?.classList.toggle('hidden',!reviewing);
+  if(reviewing){
+    $('editor-review-note').textContent=`Review the recommendations below, edit this form, then approve run ${(report?.runs?.length || 1)+1}. Context supplies the ground truth; retrieved context supplies the model with passages for its answer.`;
+    $('approve').disabled=!$('edit-question').value.trim();$('reject').disabled=false;
+  }
+}
+function syncReviewEditor() {
+  const latest=report?.runs?.at(-1);
+  if(!latest)return;
+  const reviewing=job?.state==='awaiting_review';
+  const key=`${jobId}:${latest.run}:${reviewing?'review':'run'}`;
+  if(key===editorRunKey)return; // Keep in-progress edits during polling.
+  editorRunKey=key;
+  const fields={...(latest.test_case || report.case)};
+  if(reviewing){
+    let instructions=fields.instructions || '';
+    for(const text of latest.suggestion?.recommendations || []){
+      if(!instructions.includes(text))instructions=[instructions,text].filter(Boolean).join('\n');
+    }
+    fields.instructions=instructions;
+  }
+  source(fields,job.workbook,draftMode);
+  if(reviewing)$('source-panel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderCases() {
+  if (!dataset) {lockEditor(); return;}
+  const search = $('search').value.toLowerCase();
+  const matches = dataset.cases.map((item,index)=>({item,index})).filter(({item})=>[item.id,item.category,item.input].join(' ').toLowerCase().includes(search));
+  $('case-count').textContent = dataset.cases.length;
+  $('case-list').innerHTML = matches.map(({item,index})=>`<button type="button" class="case ${index === selected ? 'active':''}" data-case="${index}" ${isBusy()?'disabled':''}><small>${esc(item.category)} / #${esc(item.id)}</small><span class="question">${esc(item.input || '(Missing question)')}</span></button>`).join('') || '<p class="empty">No matching rows.</p>';
+  lockEditor();
+  $('workbook').disabled = isBusy(); $('saved').disabled = isBusy(); $('open-report').disabled = isBusy();
+}
+async function loadDataset(name) {
+  dataset = await api('/api/dataset' + (name ? '?name='+encodeURIComponent(name):''));
+  selected = 0;
+  $('workbook').innerHTML = dataset.workbooks.map(name=>`<option ${name === dataset.workbook?'selected':''}>${esc(name)}</option>`).join('');
+  renderCases();
+  if(dataset.cases.length) source(dataset.cases[0], dataset.workbook);
+  else source({},null,'manual');
+}
+function workflow() {
+  let active = 0;
+  const state = job?.state;
+  if (state === 'generating' || state === 'starting') active=1;
+  else if (state === 'evaluating') active=2;
+  else if (state === 'awaiting_review' || state === 'review_submitted') active=4;
+  else if (report?.runs?.length) active=5;
+  $('stepper').innerHTML=['Edit test case','Generate answer','Score metrics','Analyze causes','Human review','Compare runs'].map((label,i)=>`<div class="step ${i<active?'done':i===active?'active':''}" ${i===active?'aria-current="step"':''}><b>0${i+1}</b>${label}</div>`).join('');
+}
+function metricCard(metric) {
+  const completed = metric.status === 'completed';
+  const kind = completed ? (metric.passed?'good':'bad') : (metric.status === 'error'?'bad':'wait');
+  const status = completed ? (metric.passed?'Passed':'Below threshold') : metric.status;
+  const calculation = metric.calculation;
+  const percent = typeof metric.score==='number'?Math.max(0,Math.min(100,metric.score*100)):0;
+  const target = typeof metric.threshold==='number'?Math.max(0,Math.min(100,metric.threshold*100)):0;
+  let breakdown = '';
+  if (calculation) {
+    const equation = calculation.equation || (calculation.total ? `${calculation.passing} / ${calculation.total} = ${number(calculation.passing/calculation.total)}` : `No verdicts: library default = ${calculation.empty_score}`);
+    breakdown = `<div class="formula">${esc(calculation.formula)}<br>${esc(equation)}${calculation.strict_mode?'<br>Strict mode may clamp a failing score to zero.':''}</div>${calculation.verdicts.map(item=>`<div class="verdict-item">${badge(item.verdict,item.counts_as_pass?'good':'bad')} ${esc(item.item)}<p class="muted">${esc(item.reason || 'No item-level reason returned.')}</p></div>`).join('')}`;
+  } else breakdown = '<p class="muted spaced">A calculation breakdown is not available in this UI for this result. The score and reason above come directly from the metric.</p>';
+  return `<article class="metric"><div class="section-head"><h3>${esc(labels[metric.metric] || metric.metric)}</h3>${badge(status,kind)}</div><p class="score">${number(metric.score)} <small>/ 1.00</small></p><div class="meter"><div class="fill" style="width:${percent}%"></div><div class="target" style="left:${target}%" title="Required threshold"></div></div><p class="muted">Required ≥ ${number(metric.threshold)}</p><p class="reason">${esc(metric.reason || 'No reason returned.')}</p>${metric.error?`<p class="error spaced">${esc(metric.error)}</p>`:''}<details><summary>How was this score calculated?</summary>${breakdown}</details></article>`;
+}
+function reviewPanel(run) {
+  const suggestion = run.suggestion;
+  if (!suggestion) return '';
+  const active = job?.state === 'awaiting_review' && run.run === report.runs.length;
+  const causes = (suggestion.causes || []).map(cause=>`<div class="cause"><h3>${esc(cause.possible_cause)}</h3><p><strong>Evidence:</strong> ${esc(cause.evidence || 'Review evaluator feedback.')}</p><p><strong>What to validate or change:</strong> ${esc(cause.human_check)}</p></div>`).join('');
+  return `<section class="panel review"><p class="eyebrow">04 / Analysis & human review</p><h2 class="spaced">What could improve this answer?</h2><p class="muted">These are rule-based hypotheses from evaluator feedback, not confirmed causes.</p>${causes}<div class="spaced"><h3>Recommended prompt changes</h3><ul>${suggestion.recommendations.map(text=>`<li>${esc(text)}</li>`).join('')}</ul></div>${active?`<p class="notice"><a href="#source-panel">Edit and approve run ${run.run+1} in 01 / Edit test case above.</a> Suggested instructions have been added there for your review.</p>`:`<p class="notice">${run.review ? (run.review.approved?'Approved. The reviewed test case was used for the following run.':'Rejected. No further answer was generated.') : 'Saved report: start a new evaluation to review a new proposal.'}</p>`}</section>`;
+}
+function comparisonRow(run, baseline, metricNames) {
+    const cells=metricNames.map(name=>{
+      const current=run.results.find(m=>m.metric===name), original=baseline.results.find(m=>m.metric===name);
+      const delta=run.run>1&&typeof current?.score==='number'&&typeof original?.score==='number'?current.score-original.score:null;
+      return `<td>${number(current?.score)}${delta!==null?` <small>(${delta>=0?'+':''}${number(delta)})</small>`:''}</td>`;
+    }).join('');
+    return `<tr class="${report.best_run===run.run?'best':''}"><td>Run ${run.run} ${report.best_run===run.run?'<span class="best-label">BEST</span>':''}</td>${cells}<td>${run.results.filter(m=>m.passed===true).length} / ${run.results.length}</td><td>${run.review?(run.review.approved?'Approved':'Rejected'):run.suggestion?'Pending':'—'}</td></tr>`;
+  
+}
+
+function comparison() {
+  if (!report?.runs?.length) return '';
+  const baseline = report.runs[0];
+  const metricNames = [...new Set(report.runs.flatMap(run=>run.results.map(metric=>metric.metric)))];
+  return `<section class="panel"><div class="section-head"><div><p class="eyebrow">06 / Run comparison</p><h2>Which prompt performed best?</h2></div>${report.best_run?badge('Best: run '+report.best_run,'good'):badge('No complete evaluation','wait')}</div><div class="table-wrap"><table><thead><tr><th>Run</th>${metricNames.map(name=>`<th>${esc(labels[name] || name)}</th>`).join('')}<th>Passed metrics</th><th>Review</th></tr></thead><tbody>${report.runs.map(run=>comparisonRow(run, baseline, metricNames)).join('')}</tbody></table></div><p class="inline-note">Best run: most passing metrics, then highest minimum score, then highest average. Earlier run wins a tie. Incomplete evaluations cannot win.</p>${report.best_run?`<details><summary>View best-performing prompt</summary><div class="readout spaced">${esc(report.runs[report.best_run-1].prompt)}</div></details>`:''}</section>`;
+}
+function answerPanel(run) {
+  return `<section class="panel"><div class="section-head"><p class="eyebrow">02 / Generator · run ${run.run}</p>${badge(report.generator_model || 'Generator')}</div>${run.test_case?`
+    <p class="label spaced">Question</p><div class="readout">${esc(run.test_case.input)}</div>
+    <p class="label spaced">Context (ground truth)</p><div class="readout">${esc(contextText(run.test_case))}</div>
+    <p class="label spaced">Retrieved context</p><div class="readout">${esc(Array.isArray(run.test_case.retrieval_context)?run.test_case.retrieval_context.join("\n\n"):(run.test_case.retrieval_context || "Not provided"))}</div>`:''}
+    <p class="label spaced">Generated answer from the model</p><p class="inline-note">This exact answer is sent to the judge. Hallucination checks it against the context; answer relevancy checks it against the question.</p><div class="readout">${esc(run.actual_output ?? 'Waiting for generation…')}</div></section>`;
+}
+
+function evaluationPanel(run) {
+  return `<section class="panel"><div class="section-head"><div><p class="eyebrow">03 / Evaluation</p><h2>Scores & judge feedback</h2></div>${badge(report.judge_model || 'Judge')}</div>
+    <div class="grid">${run.results.length?run.results.map(metricCard).join(''):'<p class="muted">Waiting for metric results…</p>'}</div></section>`;
+}
+
+function renderReport() {
+  workflow();
+  if (!report?.runs?.length) {$('results').innerHTML='<section class="panel empty">Preparing the first evaluation…</section>'; return;}
+  runIndex=Math.min(runIndex,report.runs.length-1);
+  const run=report.runs[runIndex];
+  const tabs=`<div class="run-tabs">${report.runs.map((r,i)=>`<button type="button" data-run="${i}" class="run-tab ${i===runIndex?'active':''}">Run ${r.run}${r.run===report.best_run?' · best':''}</button>`).join('')}</div>`;
+  $('results').innerHTML=`${report.error?`<div class="error">${esc(report.error)}</div>`:''}${tabs}${answerPanel(run)}${evaluationPanel(run)}${reviewPanel(run)}${report.stop_reason?`<div class="notice ${['evaluation_incomplete','awaiting_review','error'].includes(report.stop_reason)?'warning':''}">${esc(stopLabel(report.stop_reason))}</div>`:''}${comparison()}`;
+  if(report.runs.some(item=>item.evaluation_inputs_changed))$('results').insertAdjacentHTML('afterbegin','<p class="notice warning">Question, context, or ground truth changed between runs. Each score uses that run’s approved inputs, so score differences are not a controlled prompt-only comparison.</p>');
+
+}
+function stopLabel(reason) {return ({thresholds_met:'All enabled metrics passed. No prompt revision is needed.',run_limit:'Three-run limit reached. Review the best prompt and comparison above.',review_declined:'The reviewer rejected the revision. Evaluation stopped.',evaluation_incomplete:'A metric was skipped or failed to execute. Fix missing data or evaluation errors before improving the prompt.',awaiting_review:'This saved evaluation needs human review. Start a new evaluation for browser approval.',interrupted:'Evaluation was interrupted.',error:'Evaluation stopped because of an error.'})[reason] || reason;}
+function statusText() {
+  const names={starting:'Preparing evaluation',generating:'Generating answer',evaluating:'Calculating metrics',awaiting_review:'Waiting for human review',review_submitted:'Review received · continuing',finished:report?.stop_reason?stopLabel(report.stop_reason):'Evaluation finished',error:'Evaluation failed'};
+  $('status').textContent=job?names[job.state] || job.state:(report?'Viewing saved evaluation':'Ready to evaluate');
+  $('progress-note').textContent=job?`${job.elapsed || 0}s · ${report?.runs?.length || 0} / 3 runs`:'Baseline + up to 2 approved revisions';
+}
+async function poll() {
+  if (!jobId) return;
+  try {
+    const next = await api('/api/status?id='+encodeURIComponent(jobId));
+    job=next; pollingErrors=0;
+    const nextSignature=JSON.stringify([next.state,next.report]);
+    if(nextSignature!==signature){
+      const previousCount=report?.runs?.length || 0;
+      report=next.report; signature=nextSignature;
+      if((report?.runs?.length || 0)>previousCount)runIndex=report.runs.length-1;
+      if(next.state==='awaiting_review')runIndex=report.runs.length-1;
+      syncReviewEditor();
+      renderReport(); renderCases();
+    }
+    statusText();
+    if(next.error)showError(new Error(next.error));
+    if(busyStates.has(next.state))timer=setTimeout(poll,1000);
+    else await loadReports();
+  }catch(error){showError(error); if(++pollingErrors<5)timer=setTimeout(poll,2000);}
+}
+async function loadReports() {
+  const data=await api('/api/reports');
+  const previous=$('saved').value;
+  $('saved').innerHTML='<option value="">Choose a saved report…</option>'+data.reports.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
+  if(data.reports.includes(previous))$('saved').value=previous;
+}
+async function decide(decision) {
+  const edits=editorValues();
+  if(decision==='approve'&&!edits.input.trim()){$('review-error').textContent='A question is required.';return;}
+  $('approve').disabled=true; $('reject').disabled=true;
+  try {
+    await api('/api/review',{id:jobId,decision,edits,run:report.runs.at(-1).run});
+    clearTimeout(timer); signature=''; await poll();
+  }catch(error){$('review-error').textContent=error.message; $('approve').disabled=false;$('reject').disabled=false;}
+}
+$('search').addEventListener('input',renderCases);
+$('source').addEventListener('input',lockEditor);
+$('source').addEventListener('click',event=>{
+  if(event.target.id==='reset-case'&&(!isBusy()||job?.state==='awaiting_review')){source(draftBase,draftMode==='excel'?dataset?.workbook:null,draftMode);renderCases();}
+  if(event.target.id==='approve')decide('approve');
+  if(event.target.id==='reject')decide('reject');
+});
+$('new-case').addEventListener('click',()=>{
+  if(isBusy())return;
+  selected=-1;job=null;jobId=null;report=null;signature='';clearTimeout(timer);sessionStorage.removeItem('deepeval-job');
+  source({},null,'manual');renderCases();workflow();statusText();
+  $('results').innerHTML='<section class="panel empty">Enter a question and context above, then click Evaluate this test case.</section>';
+  $('edit-question').focus();
+});
+$('workbook').addEventListener('change',async()=>{try{clearError();await loadDataset($('workbook').value);}catch(error){showError(error);}});
+$('case-list').addEventListener('click',event=>{
+  const button=event.target.closest('[data-case]');if(!button||isBusy())return;
+  selected=Number(button.dataset.case); job=null;jobId=null;report=null;signature='';clearTimeout(timer);
+  source(dataset.cases[selected],dataset.workbook);renderCases();workflow();statusText();
+  $('results').innerHTML='<section class="panel empty">Ready. Evaluate this Excel case to see scores and review recommendations.</section>';
+});
+$('run').addEventListener('click',async()=>{
+  if(isBusy())return; clearError();$('run').disabled=true;
+  const edits=editorValues();
+  const payload=draftMode==='excel'?{workbook:dataset.workbook,case_index:selected,overrides:edits}:{case:edits};
+  try{const response=await api('/api/run',payload);jobId=response.id;sessionStorage.setItem('deepeval-job',jobId);report=null;job={state:'starting'};signature='';runIndex=0;clearTimeout(timer);renderCases();await poll();}
+  catch(error){showError(error);renderCases();}
+});
+$('results').addEventListener('click',event=>{
+  const tab=event.target.closest('[data-run]');
+  if(tab){runIndex=Number(tab.dataset.run);renderReport();}
+});
+$('open-report').addEventListener('click',async()=>{
+  if(isBusy()||!$('saved').value)return;
+  try{clearError();report=await api('/api/report?name='+encodeURIComponent($('saved').value));job=null;jobId=null;clearTimeout(timer);signature='';runIndex=(report.best_run || 1)-1;source(report.runs[runIndex]?.test_case || report.case,'Copy of saved report','manual');renderReport();statusText();renderCases();}
+  catch(error){showError(error);}
+});
+window.addEventListener('beforeunload',()=>{if(jobId)sessionStorage.setItem('deepeval-job',jobId);});
+(async()=>{
+  source({},null,'manual');workflow();
+  try{
+    const config=await api('/api/config');
+    $('models').innerHTML=`Generator <strong>${esc(config.generator)}</strong><br>Judge <strong>${esc(config.judge)}</strong>`;
+    try{await loadDataset();}catch(error){showError(error);$('workbook').innerHTML='<option>No Excel workbook available</option>';$('workbook').disabled=true;}
+    await loadReports();
+    const remembered=sessionStorage.getItem('deepeval-job');
+    if(remembered){try{const previous=await api('/api/status?id='+encodeURIComponent(remembered));jobId=remembered;job=previous;selected=previous.case.source?.case_index ?? -1;source(previous.case,previous.workbook,previous.workbook?'excel':'manual');await poll();}catch{sessionStorage.removeItem('deepeval-job');}}
+  }catch(error){showError(error);}
+})();
+</script>
+</body>
+</html>

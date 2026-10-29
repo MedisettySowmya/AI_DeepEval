@@ -1,0 +1,11 @@
+deepeval==4.3.1
+ollama
+pandas
+openpyxl
+pytest
+# Resolve DeepEval's optional MCP and cross-encoder imports in this environment.
+mcp==2.3.0
+sentence-transformers==6.2.0
+# Compatible with DeepEval 4.3.1's click<8.4 requirement.
+huggingface-hub==1.16.1
+transformers==5.17.0

@@ -1,0 +1,34 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from deepeval.dataset import EvaluationDataset, Golden
+from deepeval.test_case import LLMTestCase
+from models.model_client import generate_response
+
+
+dataset = EvaluationDataset(goldens=[Golden(input="What is your name?")])
+dataset.add_golden(Golden(input = "What is your age?")) # to add manually into golden set
+dataset.goldens[0].expected_output = "Sowmya"
+print(dataset.goldens)
+
+
+# generate dataset with actual output for each golden input
+for golden in dataset.goldens:
+    test_case = LLMTestCase(
+        input=golden.input,
+        expected_output=golden.expected_output,
+        actual_output=generate_response(golden.input),
+    )
+    dataset.add_test_case(test_case)
+    print(test_case.actual_output)
+
+
+dataset.save_as(
+    file_type="json",
+    directory= "./synthetic_data",
+    file_name="golden_dataset_creation",
+    include_test_cases=True,
+)
+

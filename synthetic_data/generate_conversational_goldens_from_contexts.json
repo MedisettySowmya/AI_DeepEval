@@ -1,0 +1,13 @@
+[
+    {
+        "scenario": "During a tech conference, two attendees discuss subscription cancellation policies for niche cloud services, focusing on the implications for auto-renewal and post-cancellation data access.",
+        "expected_outcome": "Attendees understand that cancellation takes effect at the end of the billing period, and they retain access until then, with no refund for the current period.",
+        "context": [
+            "Customers can cancel subscriptions through Account Settings, then Subscriptions, then Cancel Subscription.",
+            "Cancellation takes effect at the end of the billing period.",
+            "Customers retain access until the billing period ends.",
+            "Payments for the current billing period are not refunded."
+        ],
+        "source_files": null
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "input": "Eng. Mishaal Al-Qarni established SkyNova AI in 2009.",
+        "actual_output": null,
+        "expected_output": "Eng. Mishaal Al-Qarni established SkyNova AI in 2009, and the company provides AI-related services.",
+        "context": [
+            "SkyNova AI was founded by Eng. Mishaal Al-Qarni in 2009.",
+            "SkyNova AI provides AI-related services."
+        ],
+        "source_file": null
+    },
+    {
+        "input": "In what year did SkyNova AI commence operations?",
+        "actual_output": null,
+        "expected_output": "SkyNova AI commenced operations in 2009.",
+        "context": [
+            "SkyNova AI was founded by Eng. Mishaal Al-Qarni in 2009.",
+            "SkyNova AI provides AI-related services."
+        ],
+        "source_file": null
+    },
+    {
+        "input": "How does SkyNova AI's service offering compare to other AI companies?",
+        "actual_output": null,
+        "expected_output": "SkyNova AI, founded by Eng. Mishaal Al-Qarni in 2009, offers AI-related services. To compare its service offering with other AI companies, specific details about the services provided by SkyNova AI and its competitors would be needed.",
+        "context": [
+            "SkyNova AI was founded by Eng. Mishaal Al-Qarni in 2009.",
+            "SkyNova AI provides AI-related services."
+        ],
+        "source_file": null
+    },
+    {
+        "input": "Describe Python's applications in automation, data analysis, and web development.",
+        "actual_output": null,
+        "expected_output": "Python is used for automation, supporting tasks such as scripting and process automation. In data analysis, Python offers powerful libraries like Pandas and NumPy for handling and analyzing large datasets. For web development, Python frameworks such as Django and Flask enable the creation of robust web applications.",
+        "context": [
+            "Python is a programming language.",
+            "Python supports automation, data analysis, and web development."
+        ],
+        "source_file": null
+    },
+    {
+        "input": "Does Python support web development?",
+        "actual_output": null,
+        "expected_output": "Yes, Python supports web development.",
+        "context": [
+            "Python is a programming language.",
+            "Python supports automation, data analysis, and web development."
+        ],
+        "source_file": null
+    },
+    {
+        "input": "Explore Python's capabilities in automation and data analysis.",
+        "actual_output": null,
+        "expected_output": "Python's capabilities in automation and data analysis are robust. It supports various libraries like Selenium for web automation and pandas for data manipulation and analysis.",
+        "context": [
+            "Python is a programming language.",
+            "Python supports automation, data analysis, and web development."
+        ],
+        "source_file": null
+    }
+]
